@@ -359,7 +359,7 @@ impl LlamaTokenDataArray {
         eta: f32,
         mu: &mut f32,
     ) -> LlamaToken {
-        let mu_ptr = ptr::from_mut(mu);
+        let mu_ptr = mu as *mut f32;
         let token = unsafe {
             self.modify_as_c_llama_token_data_array(|c_llama_token_data_array| {
                 llama_cpp_sys_2::llama_sample_token_mirostat_v2(
